@@ -61,6 +61,9 @@ export default function Admin() {
   const [ticketModal, setTicketModal] = useState(false);
   const [includeModal, setIncludeModal] = useState(false);
 
+  const [saving, setSaving] = useState(false);
+  const [deleting, setDeleting] = useState(null);
+
   useEffect(() => {
     const fetchAdminData = async () => {
       try {
@@ -146,7 +149,6 @@ export default function Admin() {
 
   const openEdit = async (e) => {
     try {
-      
       const data = await getEvent(e.id);
       const event = data.event || data;
 
@@ -172,7 +174,7 @@ export default function Admin() {
           ? event.includes
           : [],
       });
-      
+
       setModal(true);
     } catch (error) {
       console.error("Unable to fetch event details:", error);
@@ -231,7 +233,7 @@ export default function Admin() {
 
   const save = async (e) => {
     e.preventDefault();
-    
+
     const value = {
       ...form,
       price: Number(form.price),
@@ -249,6 +251,8 @@ export default function Admin() {
     };
 
     try {
+      setSaving(true);
+
       if (editing) {
         await updateEvent(editing, value);
       } else {
@@ -274,6 +278,8 @@ export default function Admin() {
     } catch (error) {
       console.error("Error saving event:", error);
       alert(error.message || "Unable to save event");
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -283,13 +289,16 @@ export default function Admin() {
     }
 
     try {
+      setDeleting(id);
+
       await deleteEvent(id);
       persist(items.filter((x) => x.id !== id));
       alert("Event deleted successfully");
-      
     } catch (error) {
       console.error("Event deletion error:", error);
       alert(error.message || "Unable to delete event");
+    } finally {
+      setDeleting(null);
     }
   };
 
@@ -465,10 +474,15 @@ export default function Admin() {
 
                         <button
                           onClick={() => remove(e.id)}
-                          className="grid h-9 w-9 place-items-center rounded-full bg-paper text-red-500 hover:bg-red-50"
+                          disabled={deleting === e.id}
+                          className="grid h-9 w-9 place-items-center rounded-full bg-paper text-red-500 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
                           title="Delete"
                         >
-                          <Trash2 size={15} />
+                          {deleting === e.id ? (
+                            <span className="h-4 w-4 animate-spin rounded-full border-2 border-red-500 border-t-transparent" />
+                          ) : (
+                            <Trash2 size={15} />
+                          )}
                         </button>
                       </div>
                     </td>
@@ -674,9 +688,22 @@ export default function Admin() {
                 </button>
               </div>
 
-              <button className="sm:col-span-2 flex items-center justify-center gap-2 rounded-full bg-ink py-4 text-sm font-bold text-white">
-                <Save size={16} />{" "}
-                {editing ? "Save changes" : "Create event"}
+              <button
+                type="submit"
+                disabled={saving}
+                className="sm:col-span-2 flex items-center justify-center gap-2 rounded-full bg-ink py-4 text-sm font-bold text-white disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {saving ? (
+                  <>
+                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                    {editing ? "Saving changes..." : "Creating event..."}
+                  </>
+                ) : (
+                  <>
+                    <Save size={16} />{" "}
+                    {editing ? "Save changes" : "Create event"}
+                  </>
+                )}
               </button>
             </form>
           </div>
