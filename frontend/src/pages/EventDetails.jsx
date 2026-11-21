@@ -42,9 +42,19 @@ export default function EventDetails() {
 
   if (loading) {
     return (
-      <div className="mx-auto max-w-4xl px-5 py-32 text-center">
-        <h1 className="font-display text-3xl">Loading event details...</h1>
-      </div>
+      <main className="flex min-h-[calc(100vh-80px)] items-center justify-center px-5">
+        <div className="flex flex-col items-center text-center">
+          <div className="h-12 w-12 animate-spin rounded-full border-4 border-black/10 border-t-ink" />
+
+          <h1 className="mt-6 font-display text-2xl font-bold">
+            Loading event details...
+          </h1>
+
+          <p className="mt-2 text-sm text-black/45">
+            Please wait while we fetch the event information.
+          </p>
+        </div>
+      </main>
     );
   }
 
