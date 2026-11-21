@@ -20,6 +20,7 @@ export default function Auth({ mode = "login" }) {
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -38,10 +39,12 @@ export default function Auth({ mode = "login" }) {
     }
 
     try {
+      setLoading(true);
+
       const result = signup
         ? await signupApi(form.name, form.email, form.password)
         : await loginApi(form.email, form.password);
-        
+
       localStorage.setItem("eventoraToken", result.token);
       localStorage.setItem("eventoraUser", JSON.stringify(result.user));
 
@@ -55,6 +58,8 @@ export default function Auth({ mode = "login" }) {
 
     } catch (err) {
       setError(err.message || "Authentication failed. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -184,9 +189,22 @@ export default function Auth({ mode = "login" }) {
                   {error}
                 </p>
               )}
-              <button className="flex w-full items-center justify-center gap-2 rounded-full bg-ink py-4 text-sm font-bold text-white transition hover:bg-black/75">
-                {signup ? "Create account" : "Log in"}{" "}
-                <ArrowUpRight size={17} />
+              <button
+                type="submit"
+                disabled={loading}
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-ink py-4 text-sm font-bold text-white transition hover:bg-black/75 disabled:cursor-not-allowed disabled:opacity-70"
+              >
+                {loading ? (
+                  <>
+                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                    {signup ? "Creating account..." : "Logging in..."}
+                  </>
+                ) : (
+                  <>
+                    {signup ? "Create account" : "Log in"}
+                    <ArrowUpRight size={17} />
+                  </>
+                )}
               </button>
             </form>
             <div className="my-7 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-wider text-black/25">
