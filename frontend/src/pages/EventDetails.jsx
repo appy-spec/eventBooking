@@ -41,7 +41,11 @@ export default function EventDetails() {
   }, [id]);
 
   if (loading) {
-    return <div className="py-32 text-center">Loading event...</div>;
+    return (
+      <div className="mx-auto max-w-4xl px-5 py-32 text-center">
+        <h1 className="font-display text-3xl">Loading event details...</h1>
+      </div>
+    );
   }
 
   if (!event) {
