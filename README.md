@@ -1,4 +1,3 @@
-
 # Eventora – Event Booking Platform
 
 Eventora is a full-stack event booking platform that allows users to explore upcoming events, view event details, select tickets, and book their seats online. It also provides an admin dashboard for managing events and monitoring bookings.
@@ -9,6 +8,29 @@ The application is built using **React.js, Tailwind CSS, Node.js, Express.js, an
 
 - **Frontend:** https://event-booking-sigma-ashen.vercel.app/
 - **Backend API:** https://event-booking-87rc.onrender.com
+
+## 📸 Screenshots
+
+### 🏠 Home Page
+![Eventora Home Page](./screenshots/home.png)
+
+### 🔍 Explore Events
+![Explore Events](./screenshots/explore.png)
+
+### 🎫 Event Details
+![Event Details](./screenshots/event-details.png)
+
+### 📝 Signup Page
+![Signup Page](./screenshots/signup.png)
+
+### 👤 User Account
+![User Account](./screenshots/account.png)
+
+### ⚙️ Admin Dashboard
+![Admin Dashboard](./screenshots/admin-dashboard.png)
+
+### ➕ Create Event
+![Create Event](./screenshots/create-event.png)
 
 ## ✨ Features
 
