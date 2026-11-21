@@ -6,7 +6,7 @@ The application is built using **React.js, Tailwind CSS, Node.js, Express.js, an
 
 ## 🌐 Live Demo
 
-- **Frontend:** https://event-booking-sigma-ashen.vercel.app/
+- **Frontend:** https://event-booking-sigma-ashen.vercel.app
 - **Backend API:** https://event-booking-87rc.onrender.com
 
 ## 📸 Screenshots
@@ -217,16 +217,22 @@ npm install
 Create a `.env` file in the backend directory:
 
 ```env
+
 PORT=5000
-NODE_ENV=development
+CLIENT_ORIGIN=http://localhost:5173
 
-DB_HOST=your_database_host
-DB_PORT=4000
-DB_USER=your_database_username
-DB_PASSWORD=your_database_password
-DB_NAME=your_database_name
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=change_me
+DB_NAME=eventora
 
-JWT_SECRET=your_secure_jwt_secret
+JWT_SECRET=replace_with_a_long_random_secret
+JWT_EXPIRES_IN=1d
+ADMIN_NAME=Eventora Admin
+ADMIN_EMAIL=admin@eventora.demo
+ADMIN_PASSWORD=change_admin_password
+
 ```
 
 Configure the database credentials according to your MySQL or TiDB Cloud database.
