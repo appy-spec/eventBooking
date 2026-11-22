@@ -7,7 +7,7 @@ The application is built using **React.js, Tailwind CSS, Node.js, Express.js, an
 ## 🌐 Live Demo
 
 - **Frontend:** https://event-booking-sigma-ashen.vercel.app
-- **Backend API:** https://event-booking-87rc.onrender.com
+- **Backend API:** https://render.com - add yours
 
 ## 📸 Screenshots
 
@@ -272,7 +272,7 @@ VITE_API_URL=http://localhost:5000
 For production:
 
 ```env
-VITE_API_URL=https://event-booking-87rc.onrender.com
+VITE_API_URL=https://render.com - add yours
 ```
 
 ### Backend Environment Variables
@@ -371,7 +371,7 @@ Eventora is deployed using Vercel, Render, and TiDB Cloud.
 4. Add the production environment variable:
 
 ```env
-VITE_API_URL=https://event-booking-87rc.onrender.com
+VITE_API_URL=https://render.com - add yours
 ```
 
 5. Deploy the application.
@@ -401,7 +401,7 @@ npm start
 
 **Backend URL:**
 
-https://event-booking-87rc.onrender.com
+https://render.com - this is sample url
 
 ### Database Deployment – TiDB Cloud
 
@@ -443,13 +443,13 @@ You can test the backend API using Postman or a browser.
 **Get all events:**
 
 ```http
-GET https://event-booking-87rc.onrender.com/events
+GET https://render.com/events
 ```
 
 **Get event details:**
 
 ```http
-GET https://event-booking-87rc.onrender.com/events/1
+GET https://render.com/events/1
 ```
 
 For protected endpoints, include the JWT token in the Authorization header.
