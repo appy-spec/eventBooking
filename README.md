@@ -7,7 +7,7 @@ The application is built using **React.js, Tailwind CSS, Node.js, Express.js, an
 ## 🌐 Live Demo
 
 - **Frontend:** https://event-booking-sigma-ashen.vercel.app
-- **Backend API:** https://render.com - add yours
+- **Backend API:** https://render.com
 
 ## 📸 Screenshots
 
